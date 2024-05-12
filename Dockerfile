@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM arm64v8/ubuntu:20.04
 
 WORKDIR /lib
 
@@ -14,15 +14,15 @@ RUN apt update
 RUN apt install -y gnuradio cmake libboost-all-dev swig liborc-dev python3-sphinx doxygen libsdl1.2-dev libgsl-dev libqwt-qt5-dev libqt5opengl5-dev libzmq3-dev gobject-introspection gir1.2-gtk-3.0
 
 # Install gr-lora
-workdir /src
+WORKDIR /src
 COPY . .
-run mkdir build && \
+RUN mkdir build && \
     cd build && \
     cmake -DCMAKE_INSTALL_PREFIX=/usr .. && \
     make -j`nproc` && \
     make install && \
     ldconfig 
 
-workdir /src/examples
+WORKDIR /src/examples
 
-expose 52002
+EXPOSE 52002
