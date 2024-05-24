@@ -1,4 +1,4 @@
 #!/bin/sh
 
 VERSION=${1:-latest}
-docker build -t jkadbear/gr-lora:$VERSION .
+docker build -t yimin/gr-lora:$VERSION .
